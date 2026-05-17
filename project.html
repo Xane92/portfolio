@@ -65,7 +65,7 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 img, video, iframe, svg { display: block; max-width: 100%; }
-.page, .nav, .footer, section, main { max-width: 100%; }
+.page, .nav, .footer, main { max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
 input, textarea { font: inherit; color: inherit; }
 ::selection { background: var(--moss); color: var(--paper); }
@@ -795,7 +795,7 @@ section.sect {
 
 .socials { display: flex; flex-direction: column; gap: 0; margin-top: auto; }
 .social-row {
-  display: grid; grid-template-columns: 40px 1fr auto;
+  display: grid; grid-template-columns: 40px 1fr;
   align-items: center;
   padding: 18px 0;
   border-top: 1px solid var(--gray-faint);
@@ -1175,6 +1175,7 @@ section.sect {
   .cred-item { font-size: 16px; }
   .reforest-stat { border-left: 0; border-top: 1px solid color-mix(in oklab, var(--paper) 30%, var(--ink)); padding-left: 0; padding-top: var(--space-4); }
   .about-portrait { aspect-ratio: 4 / 4; }
+  .email-display { font-size: clamp(14px, 4.5vw, 22px); }
 }
 
 /* Print-safe fallback, just hide motion */
@@ -1200,7 +1201,7 @@ section.sect {
       <span class="brand-role">LJJ</span>
     </a>
     <div class="nav-links">
-      <a class="nav-link" href="index.html#work"><span class="num">01</span>Work</a>
+      <a class="nav-link" href="index.html#work"><span class="num">01</span>Home</a>
       <a class="nav-link" href="about.html"><span class="num">02</span>About</a>
       <a class="nav-link active" href="project.html"><span class="num">03</span>Reforest AI</a>
       <a class="nav-link" href="index.html#contact"><span class="num">04</span>Contact</a>
@@ -1217,7 +1218,7 @@ section.sect {
 
 <div class="mobile-overlay" aria-hidden="true">
   <ul class="mobile-nav-list">
-    <li><a href="index.html#work">Work</a><span class="num">01</span></li>
+    <li><a href="index.html#work">Home</a><span class="num">01</span></li>
     <li><a href="about.html">About</a><span class="num">02</span></li>
     <li><a href="project.html">Reforest AI</a><span class="num">03</span></li>
     <li><a href="index.html#contact">Contact</a><span class="num">04</span></li>
