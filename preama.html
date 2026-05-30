@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preama / Lesley John Jumbo</title>
+<style>@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap");
+
+/* ============================================
+   LESLEY JOHN JUMBO, PORTFOLIO
+   Design System: "Engineered Serenity"
+   ============================================ */
+
+/* Fonts: JetBrains Mono / Instrument Serif (display/body use robust system fallback stack) */
+:root {
+  /* Colors, ink on paper */
+  --paper: #FAF8F5;
+  --paper-deep: #F4F1EC;
+  --trace: #EDE9E2;          /* PCB trace tint, nearly invisible */
+  --ink: #1A1A1A;            /* warm near-black */
+  --ink-soft: #2B2B2B;
+  --moss: #4A5D4F;           /* the one accent */
+  --moss-deep: #3A4D3F;
+  --gray: #9B9B9B;
+  --gray-faint: #C9C6C0;
+  --rule: #1A1A1A;
+
+  /* Type */
+  --font-display: ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', Times, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Spacing scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 128px;
+  --space-9: 160px;
+
+  /* Container */
+  --page-x: 48px;
+  --page-max: 1440px;
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; max-width: 100vw; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img, video, iframe, svg { display: block; max-width: 100%; }
+.page, .nav, .footer, main { max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+input, textarea { font: inherit; color: inherit; }
+::selection { background: var(--moss); color: var(--paper); }
+
+/* ============================================
+   TYPE
+   ============================================ */
+.mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+.mono-sm { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.label { color: var(--gray); }
+.serif-italic { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; margin: 0; letter-spacing: -0.03em; line-height: 1.02; }
+p { margin: 0; }
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-x);
+  position: relative;
+}
+
+section.sect {
+  padding: var(--space-8) 0;
+  position: relative;
+}
+
+/* ============================================
+   NAV
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  background: color-mix(in oklab, var(--paper) 78%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease;
+}
+.nav.scrolled { border-bottom-color: var(--gray-faint); }
+.nav-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 18px var(--page-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.brand .dot {
+  width: 8px; height: 8px; background: var(--moss); border-radius: 0;
+  transform: rotate(45deg);
+}
+.brand-name { font-weight: 500; }
+.brand-slash { color: var(--gray); margin: 0 2px; }
+.brand-role { color: var(--gray); }
+
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 6px 0;
+  color: var(--ink);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--moss);
+  transition: width 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+.nav-link .num { color: var(--gray); margin-right: 4px; }
+
+.nav-meta {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.nav-meta .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--moss);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--moss) 60%, transparent);
+  animation: pulse 2.2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--moss) 60%, transparent); }
+  70% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--moss) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--moss) 0%, transparent); }
+}
+
+.hamburger {
+  display: none;
+  width: 36px; height: 36px;
+  position: relative;
+}
+.hamburger span {
+  position: absolute;
+  left: 6px; right: 6px;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 280ms ease, opacity 200ms ease, top 280ms ease;
+}
+.hamburger span:nth-child(1) { top: 13px; }
+.hamburger span:nth-child(2) { top: 22px; }
+.hamburger.open span:nth-child(1) { top: 17px; transform: rotate(45deg); }
+.hamburger.open span:nth-child(2) { top: 17px; transform: rotate(-45deg); }
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 90;
+  padding: 90px var(--page-x) var(--page-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateY(-100%);
+  transition: transform 420ms cubic-bezier(0.7, 0, 0.2, 1);
+}
+.mobile-overlay.open { transform: translateY(0); }
+.mobile-nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.mobile-nav-list li { border-top: 1px solid var(--gray-faint); padding: 24px 0; display: flex; align-items: baseline; justify-content: space-between; }
+.mobile-nav-list li:last-child { border-bottom: 1px solid var(--gray-faint); }
+.mobile-nav-list a { font-family: var(--font-display); font-size: 40px; letter-spacing: -0.03em; font-weight: 500; }
+.mobile-nav-list .num { font-family: var(--font-mono); font-size: 11px; color: var(--gray); letter-spacing: 0.08em; }
+
+/* Reveal */
+[data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 800ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+[data-reveal].in { opacity: 1; transform: none; }
+
+/* ============================================
+   PROJECT SUB-PAGE
+   ============================================ */
+.proj-hero {
+  padding-top: 140px;
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--ink);
+}
+.proj-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 148px);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  margin: var(--space-4) 0;
+}
+.proj-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+.proj-lede {
+  display: grid;
+  grid-template-columns: 180px 1fr 220px;
+  gap: var(--space-5);
+  padding-top: var(--space-4);
+  align-items: start;
+}
+.proj-lede .l { color: var(--gray); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.proj-lede .lede-copy {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  max-width: 620px;
+}
+.proj-lede .lede-copy em { font-family: var(--font-serif); font-style: italic; color: var(--moss); }
+
+.proj-body {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--space-5);
+  padding: var(--space-8) 0;
+}
+.proj-body h3 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+}
+.proj-body h3 em { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+.proj-body p {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+.proj-body p + p { margin-top: var(--space-3); }
+.proj-section + .proj-section { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--gray-faint); }
+
+.proj-image {
+  margin: var(--space-5) 0;
+  position: relative;
+  overflow: hidden;
+}
+.proj-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--gray-faint);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.footer .back-top {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--ink);
+  transition: color 200ms ease;
+}
+.footer .back-top:hover { color: var(--moss); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  :root { --page-x: 32px; }
+  .proj-lede, .proj-body { grid-template-columns: 100px 1fr; }
+  .proj-lede > *:last-child { grid-column: 2; }
+}
+
+@media (max-width: 720px) {
+  :root { --page-x: 20px; --space-8: 80px; --space-7: 64px; }
+  body { font-size: 16px; }
+  .nav-links { display: none; }
+  .nav-meta { display: none; }
+  .hamburger { display: inline-block; }
+  .proj-lede, .proj-body { grid-template-columns: 1fr; }
+  .proj-lede > *:last-child { grid-column: 1; }
+}
+
+/* Print-safe fallback, just hide motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="Lesley John Jumbo home">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="brand-name">Lesley John Jumbo</span>
+      <span class="brand-slash">/</span>
+      <span class="brand-role">LJJ</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html#work"><span class="num">01</span>Home</a>
+      <a class="nav-link" href="about.html"><span class="num">02</span>About</a>
+      <a class="nav-link" href="project.html"><span class="num">03</span>Reforest AI</a>
+      <a class="nav-link" href="index.html#contact"><span class="num">04</span>Contact</a>
+    </div>
+    <div class="nav-meta">
+      <span class="pulse" aria-hidden="true"></span>
+      <span data-time></span>
+    </div>
+    <button class="hamburger" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-overlay" aria-hidden="true">
+  <ul class="mobile-nav-list">
+    <li><a href="index.html#work">Home</a><span class="num">01</span></li>
+    <li><a href="about.html">About</a><span class="num">02</span></li>
+    <li><a href="project.html">Reforest AI</a><span class="num">03</span></li>
+    <li><a href="index.html#contact">Contact</a><span class="num">04</span></li>
+  </ul>
+</div>
+<main class="page">
+  <section class="proj-hero">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:var(--space-3);" data-reveal-on-load data-reveal>
+      <a href="index.html#work" class="mono" style="border-bottom:1px solid var(--ink);padding-bottom:3px;">Back to Work</a>
+      <span class="mono" style="color:var(--gray);">Project 09 / Software</span>
+    </div>
+    <h1 class="proj-title" data-reveal-on-load data-reveal data-reveal-delay="120"><span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">Preama.</span></h1>
+    <div class="proj-lede" data-reveal-on-load data-reveal data-reveal-delay="200">
+      <div class="l">Summary</div>
+      <p class="lede-copy">A creative studio site for a multidisciplinary brand working across <em>food, film, and craft.</em> Editorial design with custom typography pairing and refined motion.</p>
+      <div style="text-align:right;"><a href="https://preama-site.vercel.app" target="_blank" class="mono" style="border-bottom:1px solid var(--ink);padding-bottom:3px;">Visit Live Site &nearr;</a></div>
+    </div>
+  </section>
+
+  <div class="proj-body">
+    <div></div>
+    <div>
+      <div class="proj-section" data-reveal>
+        <h3>What it <em>is.</em></h3>
+        <p>Preama is a brand that moves between kitchens, film sets, and workshops. The site needed to hold all of that without collapsing into a generic portfolio. The result is a single-page editorial experience that treats each discipline with equal weight and lets the work breathe.</p>
+      </div>
+
+      <div class="proj-image" data-reveal>
+        <img src="images/preamasite.png" alt="Preama site screenshot">
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <h3>Design <em>approach.</em></h3>
+        <p>The typography carries the entire identity: a custom serif-and-sans pairing that shifts tone between editorial restraint and expressive warmth. Layouts are asymmetric and scroll-driven, with motion timed to feel intentional rather than decorative. Colour is used sparingly, allowing imagery and type to do the heavy lifting.</p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <h3>What was <em>built.</em></h3>
+        <p>A fully responsive site deployed on Vercel. The front-end is lightweight and fast-loading, built to prioritise visual fidelity on both mobile and desktop. Smooth scroll transitions, lazy-loaded imagery, and carefully sequenced reveal animations give the site a cinematic pace without sacrificing performance.</p>
+      </div>
+
+      <div style="padding-top:var(--space-5);" data-reveal>
+        <a href="https://preama-site.vercel.app" target="_blank" class="mono" style="display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);padding:12px 24px;transition:all 0.3s ease;" onmouseover="this.style.background='var(--ink)';this.style.color='var(--paper)';" onmouseout="this.style.background='transparent';this.style.color='var(--ink)';">Visit Live Site <span>&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>&copy; 2026 Lesley John Jumbo.</span>
+    <a href="#" class="back-top">Back to top &uarr;</a>
+  </footer>
+</main>
+<script>/* ============================================
+   Shared JS, nav, time, reveal, hamburger
+   ============================================ */
+(function(){
+  // Nav scroll state
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 12) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Local time in Port Harcourt (WAT / UTC+1)
+  const timeEls = document.querySelectorAll('[data-time]');
+  function tick() {
+    const now = new Date();
+    const opts = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Africa/Lagos' };
+    const t = new Intl.DateTimeFormat('en-GB', opts).format(now);
+    timeEls.forEach(el => { el.textContent = t; });
+  }
+  tick();
+  setInterval(tick, 1000 * 30);
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    const d = el.getAttribute('data-reveal-delay');
+    if (d) el.style.transitionDelay = `${d}ms`;
+    io.observe(el);
+  });
+
+  // Staggered on-load reveal (for hero)
+  requestAnimationFrame(() => {
+    document.querySelectorAll('[data-reveal-on-load]').forEach((el, i) => {
+      const d = el.getAttribute('data-reveal-delay') || (i * 120);
+      el.style.transitionDelay = `${d}ms`;
+      setTimeout(() => el.classList.add('in'), 60);
+    });
+  });
+
+  // Hamburger
+  const ham = document.querySelector('.hamburger');
+  const overlay = document.querySelector('.mobile-overlay');
+  if (ham && overlay) {
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  }
+
+  // Back to top
+  const backTop = document.querySelector('.back-top');
+  if (backTop) {
+    backTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+</body>
+</html>
