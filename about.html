@@ -1183,6 +1183,8 @@ section.sect {
   * { animation: none !important; transition: none !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+#stack { padding-bottom: var(--space-5) !important; }
 </style>
 </head>
 <body>
@@ -1229,10 +1231,6 @@ section.sect {
     <div class="proj-lede" style="border-top: 1px solid var(--gray-faint); padding-top: var(--space-4);" data-reveal-on-load data-reveal data-reveal-delay="200">
       <span class="l">Statement</span>
       <p class="lede-copy">I'm twenty-one. I've been building with microcontrollers since sixteen. The rest is a series of small, deliberate decisions to <em>take the work seriously</em>, and to let the work speak before I do.</p>
-      <div style="display:flex; flex-direction:column; gap: 6px; text-align: right;">
-        <span class="mono" style="color: var(--gray);">Pronouns</span>
-        <span class="mono" style="color: var(--ink);">he / him</span>
-      </div>
     </div>
   </section>
 
@@ -1256,6 +1254,31 @@ section.sect {
   </section>
 
   
+
+  <!-- ============================================
+       TECH STACK
+       ============================================ -->
+  <section class="sect" id="stack">
+    <div class="section-head" data-reveal="">
+      <span class="mono idx">04 / Stack</span>
+      <span class="mono" style="color: var(--gray);">Spec sheet · 2026.04</span>
+    </div>
+
+    <div class="stack">
+      <div class="stack-side" data-reveal="">
+        <h2>How I <em>build.</em></h2>
+        <p>A working engineer's stack, not a logo wall. These are the tools I reach for, in the order I reach for them.</p>
+      </div>
+      <div class="stack-grid" data-reveal="" data-reveal-delay="120">
+        <div class="stack-row"><span class="cat">Hardware</span><div class="items"><span>ESP32</span><span>STM32</span><span>Raspberry Pi</span><span>ARM Cortex</span><span>Fusion360</span><span>C / C++</span><span>FreeRTOS</span><span>MQTT</span></div></div>
+        <div class="stack-row"><span class="cat">Frontend</span><div class="items"><span>React</span><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span></div></div>
+        <div class="stack-row"><span class="cat">Backend</span><div class="items"><span>Python (FastAPI)</span><span>Node.js</span><span>PostgreSQL</span><span>Supabase</span></div></div>
+        <div class="stack-row"><span class="cat">Mobile</span><div class="items"><span>React Native</span><span>Flutter</span></div></div>
+        <div class="stack-row"><span class="cat">Infra</span><div class="items"><span>Vercel</span><span>AWS</span><span>Docker</span></div></div>
+        <div class="stack-row"><span class="cat">Principles</span><div class="items"><span>Measured scope</span><span>Field-ready</span><span>Low-abstraction first</span></div></div>
+      </div>
+    </div>
+  </section>
 
   <!-- PRESS -->
   <section class="press">
